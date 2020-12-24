@@ -18,8 +18,11 @@ class Magazine extends Model
 
     public function authors()
     {
-        return $this->belongsToMany(Author::class)
-            ->using(MagazineAuthor::class)
-            ->withTimestamps();
+        return $this->belongsToMany(
+        Author::class,
+        'author_magazine',
+            'magazine_id',
+            'author_id'
+        );
     }
 }
