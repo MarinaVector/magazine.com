@@ -13,16 +13,19 @@ class Magazine extends Model
         'name',
         'description',
         'image',
-        'create_date'
+        'create_date',
+        'author_id'
     ];
 
-    public function authors()
+    public function authors(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(
+        /*return $this->belongsToMany(
         Author::class,
         'author_magazine',
             'magazine_id',
             'author_id'
         );
+        */
+        return $this->belongsToMany('App\Author')->withTimestamps();
     }
 }

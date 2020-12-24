@@ -15,13 +15,15 @@ class Author extends Model
         'patronymic'
     ];
 
-    public function magazines()
+    public function magazines(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(
+        /*return $this->belongsToMany(
             Magazine::class,
             'author_magazine',
             'author_id',
             'magazine_id'
         );
+        */
+        return $this->belongsToMany('App\Magazine')->withTimestamps();
     }
 }

@@ -45,7 +45,7 @@ class MagazineController extends Controller
             'description'=> 'required|max:255',
             'image'=> 'required|image',
             'create_date'=> 'required',
-            'author_id'=> 'required',
+            'author'=> 'required',
         ]);
 
         $folder = date('Y-m-d');
@@ -56,9 +56,10 @@ class MagazineController extends Controller
             'description' => $request->get('description'),
             'image' => $image,
             'create_date'=> $request->get('create_date'),
-            'author_id' => $request->get('author_id'),
+            'author' => $request->get('author'),
         ]);
-
+//dd($request);
+        $magazine->authors()->attach($request->input('author_id'));
         $magazine->save();
 
 

@@ -67,7 +67,7 @@
 
                     @foreach ($authors as $key => $authorName)
                         <input class="form-control" id="exampleFormControlSelect1"
-                               type="checkbox" name="author_id[]" value= {{ $key }}>
+                               type="checkbox" name="author[]" value= {{ $key }}>
 
                         {{  $authorName }}
                         <br>
@@ -83,9 +83,6 @@
         </div>
     </div>
     <script>
-        $('#exampleFormControlSelect1').on('change', function(){
-            this.value = this.checked ? 1 : 0;
-            //alert(this.value);
-        }).change();
+
     </script>
 @endsection
