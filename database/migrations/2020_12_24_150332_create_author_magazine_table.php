@@ -14,14 +14,10 @@ class CreateAuthorMagazineTable extends Migration
     public function up()
     {
         Schema::create('author_magazine', function (Blueprint $table) {
-            $table->unsignedBigInteger('author_id');
-            $table->unsignedBigInteger('magazine_id');
+
+            $table->foreignId('author_id')->references('id')->on('authors')->onDelete('cascade');
+            $table->foreignId('magazine_id')->references('id')->on('magazines')->onDelete('cascade');
             $table->timestamps();
-
-            $table->unique([ 'author_id', 'magazine_id']);
-
-            $table->foreign('author_id')->on('authors')->references('id')->cascadeOnDelete();
-            $table->foreign('magazine_id')->on('magazines')->references('id')->cascadeOnDelete();
 
         });
     }
