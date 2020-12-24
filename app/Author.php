@@ -12,7 +12,8 @@ class Author extends Model
     protected $fillable = [
         'name',
         'surname',
-        'patronymic'
+        'patronymic',
+        'magazine_id'
     ];
 
     public function magazines(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
