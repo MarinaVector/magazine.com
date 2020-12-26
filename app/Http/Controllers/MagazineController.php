@@ -58,11 +58,10 @@ class MagazineController extends Controller
             'create_date'=> $request->get('create_date'),
             'author' => $request->get('author'),
         ]);
-//dd($request);
-        $magazine->authors()->attach($request->input('author_id'));
+
         $magazine->save();
 
-
+        $magazine->authors()->attach($request->get('author'));
         return redirect('/magazines')->with('success', 'Журнал успешно добавлен!');
     }
 
