@@ -1,0 +1,26 @@
+version: "3.4"
+services:
+  app:
+    volumes:
+      - "./:/app"
+      - "./docker/php/.user.ini:/usr/local/etc/php/php.ini"
+    working_dir: /app
+    command: "php artisan serve --host=0.0.0.0 --port=8000"
+    ports:
+      - 8000:8000
+    build:
+      context: docker/php
+      dockerfile: dev.Dockerfile
+  db:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_DATABASE: 'magazines'
+      MYSQL_USER: 'dev'
+      MYSQL_PASSWORD: 'password'
+    ports:
+      - 3306:3306
+    volumes:
+      - "db-data:/var/lib/mysql/data"
+volumes:
+  db-data: {}

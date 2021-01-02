@@ -17,7 +17,6 @@ class MagazineController extends Controller
     {
         $magazines = Magazine::all();
 
-
         return view('magazines.index_magazines', compact('magazines'));
     }
 
@@ -48,6 +47,7 @@ class MagazineController extends Controller
             'author'=> 'required',
         ]);
 
+
         $folder = date('Y-m-d');
         $image=$request->file('image')->store("images/{$folder}");
 
@@ -58,10 +58,10 @@ class MagazineController extends Controller
             'create_date'=> $request->get('create_date'),
             'author' => $request->get('author'),
         ]);
-
         $magazine->save();
 
         $magazine->authors()->attach($request->get('author'));
+        
         return redirect('/magazines')->with('success', 'Журнал успешно добавлен!');
     }
 
